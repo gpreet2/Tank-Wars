@@ -171,7 +171,6 @@ public class GameWorld extends JPanel implements Runnable {
 
                 walls.removeAll(wallsToRemove);
 
-                // Check for game over condition
                 if (this.t1.getLives() <= 0 || this.t2.getLives() <= 0) {
                     gameover = true;
                     Tank winner = (this.t1.getLives() > 0) ? t1 : t2;
@@ -337,10 +336,10 @@ public class GameWorld extends JPanel implements Runnable {
 
     private void playBackgroundMusic() {
         try {
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(getClass().getClassLoader().getResource("sounds/music.mid"));
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(getClass().getClassLoader().getResource("sounds/Music.mid"));
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
-            clip.loop(Clip.LOOP_CONTINUOUSLY); // Loop the music continuously
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
             clip.start();
         } catch (Exception e) {
             e.printStackTrace();
