@@ -102,7 +102,6 @@ public class GameWorld extends JPanel implements Runnable {
                         int animationX = (int) bullet.getX() - bulletHitFrames[0].getWidth() / 2;
                         int animationY = (int) bullet.getY() - bulletHitFrames[0].getHeight() / 2;
                         animations.add(new Animation(bulletHitFrames, animationX, animationY));
-                        playBulletHitSound();
                         toRemove1.add(bullet);
                     }
 
@@ -111,7 +110,6 @@ public class GameWorld extends JPanel implements Runnable {
                             int animationX = (int) bullet.getX() - bulletHitFrames[0].getWidth() / 2;
                             int animationY = (int) bullet.getY() - bulletHitFrames[0].getHeight() / 2;
                             animations.add(new Animation(bulletHitFrames, animationX, animationY));
-                            playBulletHitSound();
                             toRemove1.add(bullet);
                             if (wall instanceof BreakableWall) {
                                 wallsToRemove.add(wall);
@@ -233,24 +231,7 @@ public class GameWorld extends JPanel implements Runnable {
         }
     }
 
-    private void playBulletHitSound() {
-        try {
-            // Open the sound file as a Java input stream
-            InputStream in = getClass().getResourceAsStream("/resources/sounds/bullet.wav");
 
-
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(in);
-
-            // Get a sound clip resource
-            Clip clip = AudioSystem.getClip();
-
-            // Open audio clip and load samples from the audio input stream
-            clip.open(audioStream);
-            clip.start();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void InitializeGame() {
         this.world = new BufferedImage(GameConstants.GAME_SCREEN_WIDTH,
